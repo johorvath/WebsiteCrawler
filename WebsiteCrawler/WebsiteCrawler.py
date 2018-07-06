@@ -6,9 +6,11 @@ from bs4 import Comment
 
 page="https://www.focus.de/schlagzeilen/"
 output_file="test1.html"
+output_file1="test2.html"
 #s = ur.urlopen("http://www.focus.de")
 #sl = s.read()
 #print(sl)
+
 s = ur.urlopen( page )
 if( s.status == http.HTTPStatus.OK ):
     print( "Let's go!" )
@@ -23,14 +25,27 @@ if( s.status == http.HTTPStatus.OK ):
         list_articles=soup_comment.find_all("div", class_="teaserInfo")
         print( "#articles:" + str ( len( list_articles ) ) )
         for h in list_articles:
-            #soup_comment.select( h )
-            #print( h.next_element )
-            index=soup_comment.find( h )
-            print( index )
+            #print( type( h ) )
+            #print ( h )
+            #print( "#elements: " + str( len( h.next_elements ) ) )
+            print ( "next elements")
+            for x in h.next_elements:
+                print ( "_____________" )
+                print( x )
+            print( "End" )
+            #exit()
+            #t = soup_comment.find( h )
+            #print(t)
+            #print( t )
+            #index=soup_comment.find( h )
+            #print( index )
             
 
     with open(output_file, "w") as file:
         file.write(str(soup))
+
+    with open(output_file1, "w") as file:
+        file.write(str(comments))
 
 #urls = ur.urlretrieve(page, output_file)
 #print(type(urls))
